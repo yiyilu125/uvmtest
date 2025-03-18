@@ -9,6 +9,9 @@ class our_test extands uvm_test;
     //register our class with factory
     'uvm_component_utils(our_test); //test is a component so use 'uvm_componenet_utils
 
+    //instantiate classes
+    our_env env;
+
     //constructor
     function new(string name = "our_test", uvm_component parent=null);
         super new(name, parent);
@@ -17,6 +20,8 @@ class our_test extands uvm_test;
     //build phase: happened in zero simulation time
     function void build_phase(uvm_phase phase);
         //build other component
+        //build env class
+        env = our_env::type_id::create("env", this);
     endfunction
 
     //connect phase: happened in zero simulation time
