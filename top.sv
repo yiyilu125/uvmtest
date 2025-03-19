@@ -1,7 +1,7 @@
 /*====================================
 File name: top.sv
 Date created: 17 March 2025
-Description: top of the uvm
+Description: top of the uvm include the test and dut
 ====================================*/
 
 'include "uvm_macros.svh" //files contains basic macros used in testbench 
