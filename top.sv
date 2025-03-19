@@ -14,6 +14,14 @@ import uvm_pkg::*;  /*factory package contains basic
 module  top ();
     our_design uut(); //instantiate our deisgn
 
+    our_interface intf(); //instantiate our interface
+
+    //set the interface
+    initial begin
+        //set
+        uvm_config_db #(virtual our_interface)::set(null, "*", "intf", intf);
+    end
+
     initial begin
         run_test("our_test");
     end
