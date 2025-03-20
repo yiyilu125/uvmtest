@@ -8,7 +8,9 @@ class our_monitor extends uvm_monitor;
     //register in factory
     'uvm_component_utils(our_monitor);
 
-    our_interface intf(); //instantiate the interface
+    our_interface intf; //instantiate the interface
+
+    our_packet pkt;
 
     uvm_analysis_port #(our_packet) mon_port; //instantiate the port
 
@@ -20,6 +22,7 @@ class our_monitor extends uvm_monitor;
     //build phase: happened in zero simulation time
     function void build_phase(uvm_phase phase);
         //build other component
+        pkt = our_packet::type_id::create("Our packet");
 
         //get interface
         uvm_config_db #(virtual our_interface)::get(null, "*", "intf", intf);
@@ -35,6 +38,11 @@ class our_monitor extends uvm_monitor;
 
     //run phase: all time consuming statement are here, so task instead of function 
     task run_phase(uvm_phase phase);
-            //main logic
+        //main logic
+        forever begin
+            $(posedge intf.clk)
+                pkt.input_1 <= intf.input_1;
+                pkt.input_2 <= intf.input_2;
+        end
     endtask
 endclass

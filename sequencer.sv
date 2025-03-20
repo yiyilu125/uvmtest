@@ -4,7 +4,7 @@ Date created: 18 March 2025
 Description: sequencer component
 ====================================*/
 
-class our_sequencer extends uvm_sequencer;
+class our_sequencer extends uvm_sequencer #(our_packet);
 
     //register in the factory
     'uvm_component_utils(our_sequencer);
